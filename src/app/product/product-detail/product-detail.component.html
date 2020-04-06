@@ -1,0 +1,66 @@
+<div  
+     fxLayout="row"
+     fxLayoutGap="20px"
+     fxLayoutAlign="center"
+     fxLayout.xs="column"
+     fxLayoutAlign.xs="center center">
+
+  <div fxLayout="column" fxLayoutGap="20px" fxFlex="50%">
+    <!-- <img class="thumbnail"
+         [attr.alt]="product.title"
+         [attr.src]="urlFor(product)"> -->
+         <nga-livret [product]="product" ></nga-livret>
+      <!-- <h1 class="info__title">Livretul Aparatului</h1>
+      <div class="info__description">Producator {{ product?.title }}</div>
+      <div class="info__description">Tip {{ product?.title }}</div>
+      <div class="info__description">Model {{ product?.title }}</div>
+      <div class="info__description">Serie{{ product?.title }}</div>
+      <div class="info__description">An Fabricatie{{ product?.title }}</div>
+      <button class="info__bid-button"
+      mat-raised-button
+      color="accent"
+      (click)="placeBid(price + 5)">
+PLACE BID {{ (price + 5) | currency:'USD':'symbol':'.0' }}
+</button>
+<br> -->
+
+<!-- 
+      <h1 class="info__title">Identificare  Utilizator</h1>
+      <div class="info__description">{{ product?.title }}</div>
+      <div class="info__description">{{ product?.title }}</div>
+      <div class="info__description">{{ product?.title }}</div>
+      <div class="info__description">{{ product?.title }}</div>
+      <div class="info__description">{{ product?.title }}</div> -->
+      <nga-aparat [product]="product" ></nga-aparat>
+  </div>  
+
+  <div fxLayout="column" fxLayoutGap="20px" fxFlex="50%" >
+
+      <nga-utilizator [product]="product" ></nga-utilizator>
+      <nga-ardere [product]="product" ></nga-ardere>
+
+
+      <!-- <h1 class="info__title">{{ product?.title }}</h1>
+      <h1 class="info__title">Parametrii Aparatului</h1>
+
+      <div class="info__description">{{ product?.title }}</div>
+      <div class="info__bid">
+        <span>
+          <span class="info__bid-value"
+                ngClass.lt-md="info__bid-value--lt-md">{{ price | currency:'USD':'symbol':'.0' }}</span>
+          <span class="info__bid-value-decimal"
+                ngClass.lt-md="info__bid-value-decimal--lt-md">.00</span>
+        </span>
+        <span class="info__description">LAST BID</span>
+      </div>
+
+      <button class="info__bid-button"
+              mat-raised-button
+              color="accent"
+              (click)="placeBid(price + 5)">
+        PLACE BID {{ (price + 5) | currency:'USD':'symbol':'.0' }}
+      </button>
+      <h1 class="info__title">Instalatia de Ardere</h1>
+      <div class="info__description">{{ product?.title }}</div> -->
+  </div>
+</div>

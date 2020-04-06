@@ -1,0 +1,37 @@
+<mat-grid-list [cols]="columns$ | async" gutterSize="16">
+  
+  
+  <mat-grid-tile class="tile" *ngFor="let product of products">
+   
+    <a class="tile__content"
+       fxLayout="column"
+       fxLayoutAlign="center center"
+       >  
+
+      <span class="tile__price-tag"
+            ngClass.xs="tile__price-tag--xs">
+            <button  mat-fab color="accent" [routerLink]="['/products', product.id]" ><mat-icon>menu</mat-icon> </button>
+            <button class="toolbar__icon-button" (click)="editProduct(product)"   mat-fab color="warn"    > <mat-icon>edit</mat-icon></button>
+      </span>
+
+
+
+     
+        <div class="tile__title"
+          ngClass.xs="tile__title--xs"
+          ngClass.lg="tile__title--lg">Prenume: {{ product.title }}
+      </div>
+      <div class="tile__title"
+          ngClass.xs="tile__title--xs"
+          ngClass.lg="tile__title--lg">Nr Tel: {{ product.title }}
+      </div>
+      <div class="tile__title"
+          ngClass.xs="tile__title--xs"
+          ngClass.lg="tile__title--lg">Data: {{ product.title }}
+
+      </div> 
+ 
+ </a> 
+  </mat-grid-tile>
+</mat-grid-list>
+ 

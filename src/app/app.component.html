@@ -1,0 +1,39 @@
+<mat-sidenav-container >
+  <mat-sidenav #sidenav>
+    <nga-search-form (search)="sidenav.close()"></nga-search-form>
+  </mat-sidenav>
+  <mat-sidenav #sidenav2 position="end">
+    <nga-add-prod (search)="sidenav2.close()"></nga-add-prod>
+  </mat-sidenav>
+  <mat-toolbar class="toolbar">
+    <button mat-fab color="accent"
+            class="toolbar__icon-button"
+            (click)="sidenav.toggle()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <div class="toolbar__logo-title-group"
+         fxLayout
+         fxLayoutAlign="center center">
+      <a routerLink="/"
+         fxLayout>
+        <img class="toolbar__logo"
+             src="/assets/logo.svg"
+             alt="NgAuction Logo">
+      </a>
+      <a class="toolbar__title"
+         routerLink="/">Cetimar</a>
+    </div>
+
+    <div fxFlex></div>
+
+    <button (click)="sidenav2.toggle()" mat-fab color="accent"
+            class="toolbar__icon-button
+                   toolbar__shopping-cart-button">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <router-outlet  ></router-outlet>
+
+</mat-sidenav-container>
