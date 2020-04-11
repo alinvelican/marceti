@@ -6,5 +6,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:9090',
+  apiBaseUrl2: 'http://localhost:9000',
+
   wsUrl: 'ws://localhost:9090'
 };

@@ -11,25 +11,59 @@
       <span class="tile__price-tag"
             ngClass.xs="tile__price-tag--xs">
             <button  mat-fab color="accent" [routerLink]="['/products', product.id]" ><mat-icon>menu</mat-icon> </button>
-            <button class="toolbar__icon-button" (click)="editProduct(product)"   mat-fab color="warn"    > <mat-icon>edit</mat-icon></button>
+            <button class="toolbar__icon-button" (click)="editProduct(product)"   mat-fab color="primary"    > <mat-icon>edit</mat-icon></button>
+            
+            <button class="toolbar__icon-button" (click)="download(product)"   mat-fab color="warn"    > <mat-icon>attach_file</mat-icon></button>
       </span>
 
 
+      <div > 
 
+    
+
+        <span class="info__description">Nume: </span>
+        <span class="tile__title"
+        ngClass.xs="tile__title--xs"
+        ngClass.lg="tile__title--lg" >{{product.nume}}</span> 
+  
+      
+  </div>
+
+  <div > 
+
+    
+
+    <span class="info__description">Prenume: </span>
+    <span class="tile__title"
+    ngClass.xs="tile__title--xs"
+    ngClass.lg="tile__title--lg" >{{product.prenume}}</span> 
+
+  
+</div>  <div > 
+
+    
+
+  <span class="info__description">Nr Tel: </span>
+  <span class="tile__title"
+  ngClass.xs="tile__title--xs"
+  ngClass.lg="tile__title--lg" >{{product.nr_tel}}</span> 
+
+
+</div>  <div > 
+
+    
+
+  <span class="info__description">Data: </span>
+  <span class="tile__title"
+  ngClass.xs="tile__title--xs"
+  ngClass.lg="tile__title--lg" >{{product.data_add | date}} </span> 
+
+
+</div>
      
-        <div class="tile__title"
-          ngClass.xs="tile__title--xs"
-          ngClass.lg="tile__title--lg">Prenume: {{ product.title }}
-      </div>
-      <div class="tile__title"
-          ngClass.xs="tile__title--xs"
-          ngClass.lg="tile__title--lg">Nr Tel: {{ product.title }}
-      </div>
-      <div class="tile__title"
-          ngClass.xs="tile__title--xs"
-          ngClass.lg="tile__title--lg">Data: {{ product.title }}
-
-      </div> 
+ 
+     
+    
  
  </a> 
   </mat-grid-tile>

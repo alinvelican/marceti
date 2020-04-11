@@ -1,12 +1,12 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component,  Input, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { API_BASE_URL } from '../../app.tokens';
-import { Product } from '../../shared/services';
+import { Product, ProductService } from '../../shared/services';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 // import { ProdDialogComponent } from '../../home/product-grid/prod-dialog/prod-dialog.component';
 
 @Component({
@@ -14,8 +14,10 @@ import { Router } from '@angular/router';
   styleUrls: [ './product-suggestion.component.scss' ],
   templateUrl: './product-suggestion.component.html'
 })
-export class ProductSuggestionComponent {
-  @Input() products: Product[];
+export class ProductSuggestionComponent implements OnInit{
+   products$: Observable<Product[]>;
+  @Input() product: Product;
+  prodid : any;
   readonly columns$: Observable<number>;
   readonly breakpointsToColumnsNumber = new Map([
     [ 'xs', 1 ],
@@ -26,8 +28,8 @@ export class ProductSuggestionComponent {
   ]);
 
   constructor(
-    @Inject(API_BASE_URL) private readonly baseUrl: string,private router: Router,
-    private readonly media: ObservableMedia,private dialog: MatDialog
+      private router: Router,
+    private readonly media: ObservableMedia,private dialog: MatDialog,private route: ActivatedRoute,private productService: ProductService
   ) {
     // If the initial screen size is xs ObservableMedia doesn't emit an event
     // and grid-list rendering fails. Once the following issue is closed, this
@@ -37,7 +39,18 @@ export class ProductSuggestionComponent {
         map(mc => <number>this.breakpointsToColumnsNumber.get(mc.mqAlias)),
         startWith(1)
       );
+
+
+      console.log("in init   ddddd");
+      console.log(this.product);
+      
   }
+  ngOnInit() {
+     this.prodid = this.route.snapshot.paramMap.get("productId")
+    this.products$ = this.productService.getAllFirstById(parseInt(this.prodid));
+
+  }
+ 
   editProduct(product:Product) {
     console.log(product);
         const dialogConfig = new MatDialogConfig();
@@ -56,6 +69,14 @@ export class ProductSuggestionComponent {
         );
     
     }
+
+    download(product:Product) {
+      console.log(product);
+      const href = 'http://localhost:9090/api/download/'+product.id;
+   
+      window.open(href, "_blank");
+      
+      }
  
   scrollToTop() {
   
@@ -66,8 +87,5 @@ export class ProductSuggestionComponent {
      // this.router.navigate([ '/' ]);
      
 
-}
-  urlFor(product: Product): string {
-    return `${this.baseUrl}/${product.imageUrl}`;
-  }
+} 
 }

@@ -113,8 +113,11 @@
   }
   
   .info__bid-button {
-    width: 35%;
+    width: 20%;
     // margin-right: 46px;
+    color: black;
   
   }
-  
+  button.mat-raised-button {
+    border-radius: 0;
+ }

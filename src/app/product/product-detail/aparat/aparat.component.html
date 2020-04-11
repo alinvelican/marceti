@@ -1,48 +1,56 @@
 <div class="content">
 
 <h1 class="info__title">Parametrii Aparatului</h1>
-<h1>{{product.title}}</h1> 
  
   <div>
 
-  <span class="info__description">Producator </span>
-  <span class="info__title2" >{{product.title}}</span> 
+  <span class="info__description">Tip combustibil </span>
+  <span class="info__title2" >{{product.aparat.tip_comb}}</span> 
   </div> 
 
   <div>
 
-    <span class="info__description">Tip </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__description">Putere nominal </span>
+    <span class="info__title2" >{{product.aparat.put_nom}}</span> 
     </div> 
      
   <div>
 
-    <span class="info__description">Model </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__description">Randament </span>
+    <span class="info__title2" >{{product.aparat.randament}}</span> 
     </div> 
      
   <div>
 
-    <span class="info__description">Serie </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__description">Presiune nominal </span>
+    <span class="info__title2" >{{product.aparat.pres_nom}}</span> 
     </div> 
      
   <div>
 
-    <span class="info__description">An Fabricatie </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__description">Fluid de lucru </span>
+    <span class="info__title2" >{{product.aparat.fluid_luc}}</span> 
     </div> 
    
  <br>
 
   
  
-<button class="info__bid-button"
-mat-raised-button
-color="accent"
-(click)="editProduct(product)">
-Actualizeaza
-</button>
+ <div fxLayout="row"   fxLayoutGap="10px" >
+  <button class="info__bid-button"
+  mat-raised-button
+  color="accent"
+  (click)="editProduct(product)">
+  Actualizeaza
+  </button>
+   
+  <button class="info__bid-button"
+  mat-raised-button
+  color="primary"
+  (click)="editProduct(product)">
+  Actualizeaza
+  </button>
+</div> 
  
  
 </div>

@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
-import * as moment from 'moment';
+// import * as moment from 'moment';
 import { Product, ProductService } from '../../../shared/services';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ProdDialogComponent implements OnInit {
 
   form: FormGroup;
-  title:string;
+  nume:string;
   id: any ;
 
   constructor(
@@ -21,14 +21,16 @@ export class ProdDialogComponent implements OnInit {
       private dialogRef: MatDialogRef<ProdDialogComponent>,
       @Inject(MAT_DIALOG_DATA) product : Product ,private router: Router,private productService: ProductService) {
 
-      this.title = product.title;
+      this.nume = product.nume;
       this.id = product.id;
 
 
       this.form = this.fb.group({
-          title: [this.title, Validators.required],
-          category: [product.categories, Validators.required],
-          releasedAt: [moment(), Validators.required],
+          nume: [this.nume, Validators.required],
+          prenume: [product.prenume, Validators.required],
+          nrtel: [product.nr_tel, Validators.required],
+
+          releasedAt: [product.data_add, Validators.required],
           // longDescription: [longDescription,Validators.required]
       });
 
@@ -44,22 +46,23 @@ export class ProdDialogComponent implements OnInit {
     if (this.form.valid) {
       console.log(this.form)
        
-      const prod: Product = {
-        id: this.id,
-      title: this.form.controls.title.value,
-      description: "string",
-      categories: ["outdoor"],
-      imageUrl: "string",
-      price: 1
-    }
+   
+    this.productService.getById(this.id).subscribe(x => {
+        x.nume = this.form.controls.nume.value;
+        x.prenume = this.form.controls.prenume.value;
+        x.nr_tel = this.form.controls.nrtel.value;
+        x.data_add = this.form.controls.releasedAt.value;
+        this.productService.updateProduct(x).subscribe(value => {
+          console.log(value);
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+            this.router.navigate([ '/' ]);
+        });
+
+    });
     console.log("aici");
-    console.log(prod);
-      this.productService.updateProduct(prod).subscribe(value => {
-        console.log(value);
-      });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([ '/' ]);
+      
+    
     } else {
       console.log("nu");
     }

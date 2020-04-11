@@ -6,43 +6,50 @@
   <div>
 
   <span class="info__description">Producator </span>
-  <span class="info__title2" >{{product.title}}</span> 
+  <span class="info__title2" >{{product.livret.producator}}</span> 
   </div> 
 
   <div>
 
     <span class="info__description">Tip </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__title2" >{{product.livret.tip}}</span> 
     </div> 
      
   <div>
 
     <span class="info__description">Model </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__title2" >{{product.livret.model}}</span> 
     </div> 
      
   <div>
 
     <span class="info__description">Serie </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__title2" >{{product.livret.serie}}</span> 
     </div> 
      
   <div>
 
     <span class="info__description">An Fabricatie </span>
-    <span class="info__title2" >{{product.title}}</span> 
+    <span class="info__title2" >{{product.livret.an_fab}}</span> 
     </div> 
    
  <br>
 
   
- 
-<button class="info__bid-button"
-mat-raised-button
-color="accent"
-(click)="editProduct(product)">
-Actualizeaza
-</button>
- 
- 
+<div fxLayout="row"   fxLayoutGap="10px" >
+  <button class="info__bid-button"
+  mat-raised-button
+  color="accent"
+  (click)="editProduct(product)">
+  Actualizeaza
+  </button>
+   
+  <button class="info__bid-button"
+  mat-raised-button
+  color="primary"
+  (click)="editProduct(product)">
+  Actualizeaza
+  </button>
+</div> 
+
 </div>

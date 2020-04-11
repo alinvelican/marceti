@@ -1,5 +1,6 @@
+
 <mat-grid-list   [cols]="columns$ | async" gutterSize="16px">
-  <mat-grid-tile class="tile" *ngFor="let product of products">
+  <mat-grid-tile class="tile" *ngFor="let product of products$ | async">
     <a class="tile__content"
     fxLayout="column"
 
@@ -15,23 +16,58 @@
           
            <button class="toolbar__icon-button" 
            (click)="editProduct(product)"   
-           mat-fab color="warn"    > <mat-icon>edit</mat-icon></button>
+           mat-fab color="primary"    > <mat-icon>edit</mat-icon></button>
+
+           <button class="toolbar__icon-button" (click)="download(product)"   mat-fab color="warn"    > <mat-icon>attach_file</mat-icon></button>
+
      </span>
 
      
-        <div class="tile__title"
-        ngClass.xs="tile__title--xs"
-        ngClass.lg="tile__title--lg"> {{ product.title }}
-    </div>
-    <div class="tile__title"
-        ngClass.xs="tile__title--xs"
-        ngClass.lg="tile__title--lg"> {{ product.title }}
-    </div>
-    <div class="tile__title"
-        ngClass.xs="tile__title--xs"
-        ngClass.lg="tile__title--lg"> {{ product.title }}
+     <div > 
 
-    </div> 
+    
+
+      <span class="info__description">Nume: </span>
+      <span class="tile__title"
+      ngClass.xs="tile__title--xs"
+      ngClass.lg="tile__title--lg" >{{product.nume}}</span> 
+
+    
+</div>
+
+<div > 
+
+  
+
+  <span class="info__description">Prenume: </span>
+  <span class="tile__title"
+  ngClass.xs="tile__title--xs"
+  ngClass.lg="tile__title--lg" >{{product.prenume}}</span> 
+
+
+</div>  <div > 
+
+  
+
+<span class="info__description">Nr Tel: </span>
+<span class="tile__title"
+ngClass.xs="tile__title--xs"
+ngClass.lg="tile__title--lg" >{{product.nr_tel}}</span> 
+
+
+</div>  <div > 
+
+  
+
+<span class="info__description">Data: </span>
+<span class="tile__title"
+ngClass.xs="tile__title--xs"
+ngClass.lg="tile__title--lg" >{{product.data_add | date}}</span> 
+
+
+</div>
+   
+
     </a>
   </mat-grid-tile>
 </mat-grid-list>

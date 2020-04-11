@@ -61,6 +61,10 @@ import { ArdereDialogComponent } from './product-detail/ardere/ardere-dialog/ard
 import { UtilizatorDialogComponent } from './product-detail/utilizator/utilizator-dialog/utilizator-dialog.component';
 import { AparatDialogComponent } from './product-detail/aparat/aparat-dialog/aparat-dialog.component';
 import { LivretDialogComponent } from './product-detail/livret/livret-dialog/livret-dialog.component';
+import { SHARED_SERVICES } from '../shared/services';
+import { API_BASE_URL, API_BASE_URL2, WS_URL } from '../app.tokens';
+import { environment } from '../../environments/environment';
+import { RaportDialogComponent } from './product-detail/raport/raport-dialog/raport-dialog.component';
 
 
 @NgModule({
@@ -126,8 +130,14 @@ import { LivretDialogComponent } from './product-detail/livret/livret-dialog/liv
     ArdereDialogComponent,
     UtilizatorDialogComponent,
     AparatDialogComponent,
-    LivretDialogComponent
+    LivretDialogComponent,
+    RaportDialogComponent
+  ],  providers: [
+    ...SHARED_SERVICES,
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
+    { provide: API_BASE_URL2, useValue: environment.apiBaseUrl2 },
+    { provide: WS_URL, useValue: environment.wsUrl }
   ]
-  ,entryComponents: [ProductDialogComponent,UtilizatorDialogComponent,LivretDialogComponent,ArdereDialogComponent,AparatDialogComponent]
+  ,entryComponents: [RaportDialogComponent,ProductDialogComponent,UtilizatorDialogComponent,LivretDialogComponent,ArdereDialogComponent,AparatDialogComponent]
 })
 export class ProductModule {}

@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product, ProductService } from '../../../../shared/services';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
  
 @Component({
   selector: 'nga-livret-dialog',
@@ -13,7 +12,7 @@ import * as moment from 'moment';
 export class LivretDialogComponent implements OnInit {
 
   form: FormGroup;
-  title:string;
+  producator:string;
   id: any ;
 
   constructor(
@@ -21,14 +20,20 @@ export class LivretDialogComponent implements OnInit {
       private dialogRef: MatDialogRef<LivretDialogComponent>,
       @Inject(MAT_DIALOG_DATA) product : Product ,private router: Router,private productService: ProductService) {
 
-      this.title = product.title;
+      this.producator = product.livret.producator;
       this.id = product.id;
 
 
       this.form = this.fb.group({
-          title: [this.title, Validators.required],
-          category: [product.categories, Validators.required],
-          releasedAt: [moment(), Validators.required],
+          producator: [this.producator, Validators.required],
+          // category: [product.categories, Validators.required],
+          tip: [product.livret.tip, Validators.required],
+          model: [product.livret.model, Validators.required],
+          serie: [product.livret.serie, Validators.required],
+          anfab: [product.livret.an_fab, Validators.required],
+         
+         
+          // releasedAt: [moment(), Validators.required],
           // longDescription: [longDescription,Validators.required]
       });
 
@@ -39,33 +44,35 @@ export class LivretDialogComponent implements OnInit {
   }
 
 
+
   save() {
     console.log(this.productService);
     if (this.form.valid) {
       console.log(this.form)
        
-      const prod: Product = {
-        id: this.id,
-      title: this.form.controls.title.value,
-      description: "string",
-      categories: ["outdoor"],
-      imageUrl: "string",
-      price: 1
-    }
+      this.productService.getById(this.id).subscribe(x => {
+        x.livret.producator = this.form.controls.producator.value;
+        x.livret.tip = this.form.controls.tip.value;
+        x.livret.model = this.form.controls.model.value;
+        x.livret.serie = this.form.controls.serie.value;
+        x.livret.an_fab = this.form.controls.anfab.value;
+       
+        this.productService.updateProduct(x).subscribe(value => {
+          console.log(value);
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([ '/products/'+ this.id ]);
+        });
+
+    });
     console.log("aici");
-    console.log(prod);
-      this.productService.updateProduct(prod).subscribe(value => {
-        console.log(value);
-      });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([ '/products/'+ this.id]);
-    } else {
+   
+  
+  } else {
       console.log("nu");
     }
       this.dialogRef.close(this.form.value);
   }
-
   close() {
       this.dialogRef.close();
   }

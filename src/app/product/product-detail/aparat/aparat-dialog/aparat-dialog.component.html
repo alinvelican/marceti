@@ -3,32 +3,64 @@
 
 
 <mat-dialog-content [formGroup]="form">
-
     <mat-form-field>
 
-        <input matInput
-                placeholder="Titlu"
-               formControlName="title">
+        <mat-select placeholder="Tip Combustibil"
+            formControlName="tipcomb">
 
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <mat-select placeholder="Select category"
-            formControlName="category">
-
-            <mat-option value="BEGINNER">
-                Beginner</mat-option>
-            <mat-option value="INTERMEDIATE">
-                Intermediate</mat-option>
-            <mat-option value="ADVANCED">
-                Advanced</mat-option>
+            <mat-option value="Gazos">
+                Gazos</mat-option>
+            <mat-option value="Lichid">
+                Lichid</mat-option>
+            <mat-option value="Solid">
+                Solid</mat-option>
+                <mat-option value="Electric">
+                    Electric</mat-option>
 
         </mat-select>
 
     </mat-form-field>
 
     <mat-form-field>
+
+        <input matInput
+                placeholder="Putere Nominal"
+               formControlName="putnom">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Randament"
+               formControlName="rand">
+
+    </mat-form-field>
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Presiune Nominal"
+               formControlName="prenom">
+
+    </mat-form-field>
+  
+
+    <mat-form-field>
+
+        <mat-select placeholder="Fluid de lucru"
+            formControlName="fluid">
+
+            <mat-option value="Apa">
+                Apa</mat-option>
+            <mat-option value="Antigel">
+                Antigel</mat-option>
+            
+        </mat-select>
+
+    </mat-form-field>
+
+
+    <!-- <mat-form-field>
 
         <input matInput [matDatepicker]="myDatepicker"
             formControlName="releasedAt">
@@ -40,7 +72,7 @@
 
         <mat-datepicker #myDatepicker></mat-datepicker>
 
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!-- <mat-form-field>
 

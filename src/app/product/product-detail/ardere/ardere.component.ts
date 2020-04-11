@@ -21,7 +21,7 @@ export class ArdereComponent implements OnInit {
     
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-    
+    // dialogConfig.minHeight = 800;
         dialogConfig.data = product;
     
         const dialogRef = this.dialog.open(ArdereDialogComponent,

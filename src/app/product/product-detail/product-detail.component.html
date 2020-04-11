@@ -31,12 +31,13 @@ PLACE BID {{ (price + 5) | currency:'USD':'symbol':'.0' }}
       <div class="info__description">{{ product?.title }}</div>
       <div class="info__description">{{ product?.title }}</div>
       <div class="info__description">{{ product?.title }}</div> -->
-      <nga-aparat [product]="product" ></nga-aparat>
+      <nga-utilizator [product]="product" ></nga-utilizator>
   </div>  
 
   <div fxLayout="column" fxLayoutGap="20px" fxFlex="50%" >
 
-      <nga-utilizator [product]="product" ></nga-utilizator>
+    <nga-aparat [product]="product" ></nga-aparat>
+      
       <nga-ardere [product]="product" ></nga-ardere>
 
 
@@ -64,3 +65,5 @@ PLACE BID {{ (price + 5) | currency:'USD':'symbol':'.0' }}
       <div class="info__description">{{ product?.title }}</div> -->
   </div>
 </div>
+
+<nga-raport [product]="product"></nga-raport>

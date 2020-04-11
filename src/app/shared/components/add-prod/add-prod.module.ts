@@ -12,7 +12,6 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
   declarations: [AddProdComponent],
   imports: [
     CommonModule, MatNativeDateModule,MatRippleModule,
-
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,

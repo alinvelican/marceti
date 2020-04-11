@@ -1,14 +1,11 @@
 
 import {  Component, EventEmitter, Output } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  Validators,
-  ValidationErrors
+  Validators
 } from '@angular/forms';
 import { ProductService,Product } from '../../services';
 
@@ -21,16 +18,16 @@ export class AddProdComponent {
   myControl = new FormControl();
   options: string[] = ['Ariston', 'Ferroli', 'Viessmann','Motan'];
   @Output() search = new EventEmitter();
-  readonly matcher = new ShowOnFormInvalidStateMatcher2();
   readonly searchForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router,private productService: ProductService) {
+  constructor(fb: FormBuilder, private router: Router,private productService: ProductService ) {
     this.searchForm = fb.group({
-      title   : [, Validators.minLength(2)],
-      minPrice: [, Validators.min(0)],
-      maxPrice: [, Validators.min(0)]
+      nume   : [, Validators.minLength(2)],
+      prenume: [, Validators.min(2)],
+      nrtel: [, Validators.min(2)],
+      picker: [, Validators.min(2)]
     }, {
-      validator: [ minLessThanMaxValidator ]
+       
     });
   }
 
@@ -39,12 +36,22 @@ export class AddProdComponent {
       console.log(this.searchForm)
       this.search.emit();
       const prod: Product = {
-        id: 1222,
-      title: this.searchForm.controls.title.value,
-      description: "string",
+        data_add :  this.searchForm.controls.picker.value, 
+        data_mod:Date.now().toString(),
+
+        id:  Math.floor(Math.random() * (10000 - 1 + 1)) + 1 ,
+      nume: this.searchForm.controls.nume.value,
+      prenume: this.searchForm.controls.prenume.value,
       categories: ["outdoor"],
-      imageUrl: "string",
-      price: 1
+      nr_tel: this.searchForm.controls.nrtel.value,
+      livret:{},
+      ardere:{},
+      aparat:{},
+      utilizator:{},
+      obs:[]
+
+
+     
     }
 
       this.productService.addProduct(prod).subscribe(value => {
@@ -57,13 +64,7 @@ export class AddProdComponent {
   }
 }
 
-/** Error when either control or the form is invalid. */
-export class ShowOnFormInvalidStateMatcher2 implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | null): boolean {
-    return !!((control && control.invalid) || (form && form.hasError('minLessThanMax')));
-  }
-}
-
+ 
 /**
  * Removes properties with empty values (everything that's
  * considered a "falsy" value in JavaScript) from the original object.
@@ -81,13 +82,4 @@ export class ShowOnFormInvalidStateMatcher2 implements ErrorStateMatcher {
  * If both values - min and max prices are specified,
  * make sure that the min is less or equal to the max.
  */
-function minLessThanMaxValidator(group: FormGroup): ValidationErrors | null {
-  const minPrice = group.controls['minPrice'].value;
-  const maxPrice = group.controls['maxPrice'].value;
-
-  if (minPrice && maxPrice) {
-    return minPrice <= maxPrice ? null : { minLessThanMax: true };
-  } else {
-    return null;
-  }
-}
+ 

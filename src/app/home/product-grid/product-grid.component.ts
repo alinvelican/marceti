@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { API_BASE_URL } from '../../app.tokens';
 import { Product } from '../../shared/services';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ProdDialogComponent } from './prod-dialog/prod-dialog.component';
@@ -25,7 +24,6 @@ export class ProductGridComponent {
   ]);
 
   constructor(
-    @Inject(API_BASE_URL) private readonly baseUrl: string,
     private readonly media: ObservableMedia,private dialog: MatDialog) {
     // If the initial screen size is xs ObservableMedia doesn't emit an event
     // and grid-list rendering fails. Once the following issue is closed, this
@@ -37,11 +35,14 @@ export class ProductGridComponent {
       );
   }
 
-  urlFor(product: Product): string {
-    return `${this.baseUrl}/${product.imageUrl}`;
-  }
-
-
+  
+  download(product:Product) {
+    console.log(product);
+    const href = 'http://localhost:9090/api/download/'+product.id;
+ 
+    window.open(href, "_blank");
+    
+    }
   editProduct(product:Product) {
 console.log(product);
     const dialogConfig = new MatDialogConfig();

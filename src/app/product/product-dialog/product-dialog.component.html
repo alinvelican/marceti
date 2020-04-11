@@ -7,12 +7,24 @@
     <mat-form-field>
 
         <input matInput
-                placeholder="Titlu"
-               formControlName="title">
+                placeholder="Nume"
+               formControlName="nume">
 
     </mat-form-field>
-
     <mat-form-field>
+
+        <input matInput
+                placeholder="Prenume"
+               formControlName="prenume">
+
+    </mat-form-field>  <mat-form-field>
+
+        <input matInput
+                placeholder="Nr Telefon"
+               formControlName="nrtel">
+
+    </mat-form-field>
+    <!-- <mat-form-field>
 
         <mat-select placeholder="Select category"
             formControlName="category">
@@ -26,19 +38,19 @@
 
         </mat-select>
 
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field>
-
+        <mat-label>Data urmatoare autorizare</mat-label>
         <input matInput [matDatepicker]="myDatepicker"
-            formControlName="releasedAt">
+            formControlName="releasedAt"  >
 
         <mat-datepicker-toggle matSuffix
                                [for]="myDatepicker">
 
         </mat-datepicker-toggle>
 
-        <mat-datepicker #myDatepicker></mat-datepicker>
+        <mat-datepicker   #myDatepicker   ></mat-datepicker>
 
     </mat-form-field>
 

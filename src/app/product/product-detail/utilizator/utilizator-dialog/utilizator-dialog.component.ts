@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product, ProductService } from '../../../../shared/services';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+// import * as moment from 'moment';
  
 @Component({
   selector: 'nga-utilizator-dialog',
@@ -14,7 +14,6 @@ export class UtilizatorDialogComponent implements OnInit {
 
   
   form: FormGroup;
-  title:string;
   id: any ;
 
   constructor(
@@ -22,14 +21,20 @@ export class UtilizatorDialogComponent implements OnInit {
       private dialogRef: MatDialogRef<UtilizatorDialogComponent>,
       @Inject(MAT_DIALOG_DATA) product : Product ,private router: Router,private productService: ProductService) {
 
-      this.title = product.title;
       this.id = product.id;
 
 
       this.form = this.fb.group({
-          title: [this.title, Validators.required],
-          category: [product.categories, Validators.required],
-          releasedAt: [moment(), Validators.required],
+          nume: [product.utilizator.nume, Validators.required],
+          prenume: [product.utilizator.prenume, Validators.required],
+          judet: [product.utilizator.judet, Validators.required],
+          oras: [product.utilizator.oras, Validators.required],
+          strada: [product.utilizator.strada, Validators.required],
+          blscap: [product.utilizator.blscap, Validators.required],
+          telefon: [product.utilizator.telefon, Validators.required],
+          amp_apar: [product.utilizator.amp_apar, Validators.required],
+          detinator: [product.utilizator.detinator, Validators.required],
+          
           // longDescription: [longDescription,Validators.required]
       });
 
@@ -39,29 +44,35 @@ export class UtilizatorDialogComponent implements OnInit {
 
   }
 
-
   save() {
     console.log(this.productService);
     if (this.form.valid) {
       console.log(this.form)
        
-      const prod: Product = {
-        id: this.id,
-      title: this.form.controls.title.value,
-      description: "string",
-      categories: ["outdoor"],
-      imageUrl: "string",
-      price: 1
-    }
+      this.productService.getById(this.id).subscribe(x => {
+        x.utilizator.nume = this.form.controls.nume.value;
+        x.utilizator.prenume = this.form.controls.prenume.value;
+        x.utilizator.judet = this.form.controls.judet.value;
+        x.utilizator.oras = this.form.controls.oras.value;
+        x.utilizator.strada = this.form.controls.strada.value;
+        x.utilizator.blscap = this.form.controls.blscap.value;
+        x.utilizator.telefon = this.form.controls.telefon.value;
+        x.utilizator.amp_apar = this.form.controls.amp_apar.value;
+        x.utilizator.detinator = this.form.controls.detinator.value;
+
+
+        this.productService.updateProduct(x).subscribe(value => {
+          console.log(value);
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([ '/products/'+ this.id ]);
+        });
+
+    });
     console.log("aici");
-    console.log(prod);
-      this.productService.updateProduct(prod).subscribe(value => {
-        console.log(value);
-      });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-      // this.router.navigate([ '/' ]);
-    } else {
+   
+     
+  } else {
       console.log("nu");
     }
       this.dialogRef.close(this.form.value);

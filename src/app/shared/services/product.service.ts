@@ -4,15 +4,67 @@ import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
 import { API_BASE_URL } from '../../app.tokens';
 
+
 export interface Product {
   id: number;
-  title: string;
-  price: number;
-  imageUrl: string;
-  description: string;
+  data_add: string; 
+  data_mod: string; 
+  nume: string;
+  prenume: string;
+  nr_tel: string;
+  livret: any;
+  aparat: any;
+  utilizator: any;
+  ardere: any;
   categories: string[];
+  obs: Obs[];
 }
+export interface Obs {
+  id: number;
+  titlu: string;
+  detalii: string;
+  data_add: string; 
+}export interface Livret {
+  id: number;
+  producator: string;
+  tip: string;
+  model: string; 
+  serie: string; 
+  an_fab: string; 
+}export interface Aparat {
+  id: number;
+  tip_comb: string;
+  put_nom: string;
+  randament: string;
+  pres_nom: string; 
+  fluid_luc: string; 
+}
+export interface Utilizator {
+  id: number;
+  nume: string;
+  prenume: string;
+  judet: string; 
+  oras: string; 
+  strada: string; 
+  blscap: string; 
+  telefon: string; 
+  amp_apar: string; 
+  detinator: string; 
 
+}
+export interface Ardere {
+  id: number;
+  producator: string;
+  tip: string;
+  model: string;
+  serie: string; 
+  an_fab: string; 
+  put_maxmin: string; 
+  cu_aer: string; 
+  tip_comb: string; 
+  cu_alim: string; 
+
+}
 export interface ProductSearchParams {
   [key: string]: any; // To make compatible with HttpParams type.
   title?: string;
@@ -25,6 +77,8 @@ export abstract class ProductService {
   abstract addProduct(product : Product): Observable<Product[]>;
   abstract updateProduct(product : Product): Observable<Product[]>;
   abstract getById(productId: number): Observable<Product>;
+  abstract getAllFirstById(productId: number): Observable<Product[]>;
+
   abstract getByCategory(category: string): Observable<Product[]>;
   abstract getAllCategories(): Observable<string[]>;
   abstract search(params: ProductSearchParams): Observable<Product[]>;
@@ -55,7 +109,9 @@ export class HttpProductService implements ProductService {
   getById(productId: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/api/products/${productId}`);
   }
-
+  getAllFirstById(productId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/productsfirstid/${productId}`);
+  }
   getByCategory(category: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/api/categories/${category}`);
   }
@@ -67,6 +123,7 @@ export class HttpProductService implements ProductService {
   search(params: ProductSearchParams): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/api/products`, { params });
   }
+   
 }
 
 // @Injectable()

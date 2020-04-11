@@ -7,28 +7,100 @@
     <mat-form-field>
 
         <input matInput
-                placeholder="Titlu"
-               formControlName="title">
+                placeholder="Producator"
+               formControlName="producator">
 
     </mat-form-field>
 
     <mat-form-field>
 
-        <mat-select placeholder="Select category"
-            formControlName="category">
+        <input matInput
+                placeholder="Tip"
+               formControlName="tip">
 
-            <mat-option value="BEGINNER">
-                Beginner</mat-option>
-            <mat-option value="INTERMEDIATE">
-                Intermediate</mat-option>
-            <mat-option value="ADVANCED">
-                Advanced</mat-option>
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Model"
+               formControlName="model">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Serie"
+               formControlName="serie">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="An fabricatie"
+               formControlName="an_fab">
+
+    </mat-form-field>
+
+
+    
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Putere maxima"
+               formControlName="put_maxmin">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <mat-select placeholder="Cu aer"
+            formControlName="cu_aer">
+
+            <mat-option value="Aspirat">
+                Aspirat</mat-option>
+            <mat-option value="Insuflat">
+                Insuflat</mat-option>
+             
 
         </mat-select>
 
     </mat-form-field>
 
+   
     <mat-form-field>
+
+    <mat-select placeholder="Tip Combustibil"
+    formControlName="tip_comb">
+
+    <mat-option value="Gazos">
+        Gazos</mat-option>
+    <mat-option value="Lichid">
+        Lichid</mat-option>
+    <mat-option value="Solid">
+        Solid</mat-option>
+        <mat-option value="Electric">
+            Electric</mat-option>
+
+</mat-select>
+</mat-form-field>
+
+<mat-form-field> 
+<mat-select placeholder="Cu alimentare"
+formControlName="cu_alim">
+
+<mat-option value="Manuala">
+    Manuala</mat-option>
+<mat-option value="Automata">
+    Automata</mat-option>
+ 
+
+</mat-select>
+</mat-form-field>
+ 
+    <!-- <mat-form-field>
 
         <input matInput [matDatepicker]="myDatepicker"
             formControlName="releasedAt">
@@ -40,7 +112,7 @@
 
         <mat-datepicker #myDatepicker></mat-datepicker>
 
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!-- <mat-form-field>
 
@@ -51,7 +123,7 @@
 
     </mat-form-field> -->
 
-
+ 
 </mat-dialog-content>
 
 <mat-dialog-actions>
