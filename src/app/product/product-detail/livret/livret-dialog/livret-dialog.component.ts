@@ -57,6 +57,11 @@ export class LivretDialogComponent implements OnInit {
         x.livret.serie = this.form.controls.serie.value;
         x.livret.an_fab = this.form.controls.anfab.value;
        
+        x.ardere.producator = this.form.controls.producator.value;
+        x.ardere.tip = this.form.controls.tip.value;
+        x.ardere.model = this.form.controls.model.value;
+        x.ardere.serie = this.form.controls.serie.value;
+        x.ardere.an_fab = this.form.controls.anfab.value;
         this.productService.updateProduct(x).subscribe(value => {
           console.log(value);
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;

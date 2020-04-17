@@ -6,7 +6,6 @@ import { Product, ProductService } from '../../shared/services';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 // import { ProdDialogComponent } from '../../home/product-grid/prod-dialog/prod-dialog.component';
 
 @Component({
@@ -47,7 +46,7 @@ export class ProductSuggestionComponent implements OnInit{
   }
   ngOnInit() {
      this.prodid = this.route.snapshot.paramMap.get("productId")
-    this.products$ = this.productService.getAllFirstById(parseInt(this.prodid));
+    this.products$ = this.productService.getAllFirstById(this.prodid);
 
   }
  
@@ -72,7 +71,8 @@ export class ProductSuggestionComponent implements OnInit{
 
     download(product:Product) {
       console.log(product);
-      const href = 'http://localhost:9090/api/download/'+product.id;
+      // const href = 'http://localhost:9090/api/download/'+product.id;
+      const href = 'https://server-solsu5o72q-ez.a.run.app/api/download/'+product.id;
    
       window.open(href, "_blank");
       

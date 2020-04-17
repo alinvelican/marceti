@@ -67,23 +67,28 @@ export class ProductDialogComponent implements OnInit {
         x.data_add = this.form.controls.releasedAt.value;
         this.productService.updateProduct(x).subscribe(value => {
           console.log(value);
-           
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+          this.dialogRef.close(this.form.value);
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([ '/products/'+ this.id ]);
+          this.scrollToTop();
         });
 
     });
     console.log("aici");
    
      
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.router.onSameUrlNavigation = 'reload';
     //   this.router.navigate([ '/products/'+ this.id ]);
     } else {
       console.log("nu");
     }
       this.dialogRef.close(this.form.value);
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([ '/products/'+ this.id ]);
-      this.scrollToTop();
+      // this.router.onSameUrlNavigation = 'reload';
+      // this.router.navigate([ '/products/'+ this.id ]);
+      // this.scrollToTop();
   }
 
   close() {

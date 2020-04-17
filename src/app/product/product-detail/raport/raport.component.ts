@@ -47,7 +47,8 @@ export class RaportComponent implements  OnInit {
  
   getRepoIssues( ): Observable<Obs[]> {
     var prodid = this.route.snapshot.paramMap.get("productId")
-    const href = 'http://localhost:9090/api/obs/'+prodid;
+    // const href = 'http://localhost:9090/api/obs/'+prodid;
+    const href = 'https://server-solsu5o72q-ez.a.run.app/api/obs/'+prodid;
    
 
     return this._httpClient.get<Obs[]>(href);

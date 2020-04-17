@@ -38,8 +38,8 @@ export class AddProdComponent {
       const prod: Product = {
         data_add :  this.searchForm.controls.picker.value, 
         data_mod:Date.now().toString(),
-
-        id:  Math.floor(Math.random() * (10000 - 1 + 1)) + 1 ,
+        id:"",
+        // id:  Math.floor(Math.random() * (10000 - 1 + 1)) + 1 ,
       nume: this.searchForm.controls.nume.value,
       prenume: this.searchForm.controls.prenume.value,
       categories: ["outdoor"],
@@ -47,7 +47,7 @@ export class AddProdComponent {
       livret:{},
       ardere:{},
       aparat:{},
-      utilizator:{},
+      utilizator:{nume:this.searchForm.controls.nume.value,prenume: this.searchForm.controls.prenume.value,telefon: this.searchForm.controls.nrtel.value},
       obs:[]
 
 
@@ -56,12 +56,18 @@ export class AddProdComponent {
 
       this.productService.addProduct(prod).subscribe(value => {
         console.log(value);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([ '/products/'+value.id ]);
       });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([ '/' ]);
+    
     }
   }
+  close() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([ '/' ]);
+}
 }
 
  

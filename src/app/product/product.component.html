@@ -27,7 +27,8 @@ mat-tab-nav-bar>
  <nga-product-suggestion
       fxFlex="auto"
       fxFlex.gt-md="25%"
-      [product]="product"
+      
+      [product]="product$ | async"
       *ngIf="suggestedProducts$ | async as products"
    
       >

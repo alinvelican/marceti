@@ -35,8 +35,12 @@
 
         <div>
     
-          <span class="info__description">Bl, Sc, Ap </span>
-          <span class="info__title2" >{{product.utilizator.blscap}}</span> 
+          <span class="info__description">Bl:</span>
+          <span class="info__title2" >{{product.utilizator.bl}} </span> 
+          <span class="info__description">Sc:</span>
+          <span class="info__title2" >{{product.utilizator.sc}} </span> 
+          <span class="info__description">Ap:</span>
+          <span class="info__title2" >{{product.utilizator.ap}} </span> 
           </div> 
          
           <div>
@@ -66,15 +70,15 @@
       mat-raised-button
       color="accent"
       (click)="editProduct(product)">
-      Actualizeaza
+      Edit
       </button>
        
-      <button class="info__bid-button"
+      <!-- <button class="info__bid-button"
       mat-raised-button
       color="primary"
       (click)="editProduct(product)">
       Actualizeaza
-      </button>
+      </button> -->
     </div> 
     
     </div>

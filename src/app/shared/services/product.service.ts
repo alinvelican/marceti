@@ -6,7 +6,7 @@ import { API_BASE_URL } from '../../app.tokens';
 
 
 export interface Product {
-  id: number;
+  id: string;
   data_add: string; 
   data_mod: string; 
   nume: string;
@@ -46,7 +46,10 @@ export interface Utilizator {
   judet: string; 
   oras: string; 
   strada: string; 
-  blscap: string; 
+  bl: string; 
+  sc: string; 
+  ap: string; 
+
   telefon: string; 
   amp_apar: string; 
   detinator: string; 
@@ -74,10 +77,10 @@ export interface ProductSearchParams {
 
 export abstract class ProductService {
   abstract getAll(): Observable<Product[]>;
-  abstract addProduct(product : Product): Observable<Product[]>;
+  abstract addProduct(product : Product): Observable<any>;
   abstract updateProduct(product : Product): Observable<Product[]>;
-  abstract getById(productId: number): Observable<Product>;
-  abstract getAllFirstById(productId: number): Observable<Product[]>;
+  abstract getById(productId: any): Observable<Product>;
+  abstract getAllFirstById(productId: any): Observable<Product[]>;
 
   abstract getByCategory(category: string): Observable<Product[]>;
   abstract getAllCategories(): Observable<string[]>;

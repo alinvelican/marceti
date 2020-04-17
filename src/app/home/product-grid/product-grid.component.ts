@@ -38,8 +38,9 @@ export class ProductGridComponent {
   
   download(product:Product) {
     console.log(product);
-    const href = 'http://localhost:9090/api/download/'+product.id;
- 
+    // const href = 'http://localhost:9090/api/download/'+product.id;
+    
+    const href = 'https://server-solsu5o72q-ez.a.run.app/api/download/'+product.id;
     window.open(href, "_blank");
     
     }

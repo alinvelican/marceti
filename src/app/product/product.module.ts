@@ -62,7 +62,7 @@ import { UtilizatorDialogComponent } from './product-detail/utilizator/utilizato
 import { AparatDialogComponent } from './product-detail/aparat/aparat-dialog/aparat-dialog.component';
 import { LivretDialogComponent } from './product-detail/livret/livret-dialog/livret-dialog.component';
 import { SHARED_SERVICES } from '../shared/services';
-import { API_BASE_URL, API_BASE_URL2, WS_URL } from '../app.tokens';
+import { API_BASE_URL, WS_URL } from '../app.tokens';
 import { environment } from '../../environments/environment';
 import { RaportDialogComponent } from './product-detail/raport/raport-dialog/raport-dialog.component';
 
@@ -135,7 +135,6 @@ import { RaportDialogComponent } from './product-detail/raport/raport-dialog/rap
   ],  providers: [
     ...SHARED_SERVICES,
     { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
-    { provide: API_BASE_URL2, useValue: environment.apiBaseUrl2 },
     { provide: WS_URL, useValue: environment.wsUrl }
   ]
   ,entryComponents: [RaportDialogComponent,ProductDialogComponent,UtilizatorDialogComponent,LivretDialogComponent,ArdereDialogComponent,AparatDialogComponent]

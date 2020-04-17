@@ -56,8 +56,17 @@ export class ArdereDialogComponent implements OnInit {
         x.ardere.serie = this.form.controls.serie.value;
         x.ardere.an_fab = this.form.controls.an_fab.value;
         x.ardere.put_maxmin = this.form.controls.put_maxmin.value;
+        x.ardere.cu_aer = this.form.controls.cu_aer.value;
+
         x.ardere.tip_comb = this.form.controls.tip_comb.value;
         x.ardere.cu_alim = this.form.controls.cu_alim.value;
+
+        x.livret.producator = this.form.controls.producator.value;
+        x.livret.tip = this.form.controls.tip.value;
+        x.livret.model = this.form.controls.model.value;
+        x.livret.serie = this.form.controls.serie.value;
+        x.livret.an_fab = this.form.controls.an_fab.value;
+
 
         this.productService.updateProduct(x).subscribe(value => {
           console.log(value);

@@ -3,10 +3,10 @@
     <nga-search-form (search)="sidenav.close()"></nga-search-form>
   </mat-sidenav>
   <mat-sidenav #sidenav2 position="end">
-    <nga-add-prod (search)="sidenav2.close()"></nga-add-prod>
+    <nga-add-prod (search)="sidenav2.close()"  (close)="sidenav2.close()"></nga-add-prod>
   </mat-sidenav>
   <mat-toolbar class="toolbar">
-    <button mat-fab color="accent"
+    <button mat-fab color="primary"
             class="toolbar__icon-button"
             (click)="sidenav.toggle()">
       <mat-icon>search</mat-icon>

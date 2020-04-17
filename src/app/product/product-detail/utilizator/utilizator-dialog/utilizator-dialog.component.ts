@@ -30,7 +30,10 @@ export class UtilizatorDialogComponent implements OnInit {
           judet: [product.utilizator.judet, Validators.required],
           oras: [product.utilizator.oras, Validators.required],
           strada: [product.utilizator.strada, Validators.required],
-          blscap: [product.utilizator.blscap, Validators.required],
+          bl: [product.utilizator.bl, Validators.required],
+          sc: [product.utilizator.sc, Validators.required],
+          ap: [product.utilizator.ap, Validators.required],
+
           telefon: [product.utilizator.telefon, Validators.required],
           amp_apar: [product.utilizator.amp_apar, Validators.required],
           detinator: [product.utilizator.detinator, Validators.required],
@@ -55,7 +58,9 @@ export class UtilizatorDialogComponent implements OnInit {
         x.utilizator.judet = this.form.controls.judet.value;
         x.utilizator.oras = this.form.controls.oras.value;
         x.utilizator.strada = this.form.controls.strada.value;
-        x.utilizator.blscap = this.form.controls.blscap.value;
+        x.utilizator.bl = this.form.controls.bl.value;
+        x.utilizator.sc = this.form.controls.sc.value;
+        x.utilizator.ap = this.form.controls.ap.value;
         x.utilizator.telefon = this.form.controls.telefon.value;
         x.utilizator.amp_apar = this.form.controls.amp_apar.value;
         x.utilizator.detinator = this.form.controls.detinator.value;
